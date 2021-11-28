@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const auth = require('../middleware/auth');
 
-const Controller = require('../controllers/produtos.controller');
+const ProductsController = require('../controllers/product.controller');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -32,22 +32,23 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-router.get('/', Controller.getProdutos);
+router.get('/', ProductsController.getProducts);
 router.post('/', 
-    upload.single('produto_imagem'), 
-    auth.obrigatorio ,
-    Controller.postProdutos    
+    auth.required ,
+    upload.single('image'), 
+    ProductsController.postProduct    
 );
-router.get('/:id_produto', Controller.getUmProduto);
-router.patch('/', auth.obrigatorio, Controller.updateProduto);
-router.delete('/', auth.obrigatorio, Controller.deleteProduto);
+router.get('/:productId', ProductsController.getProductDetail);
+router.patch('/:productId', auth.required, ProductsController.updateProduct);
+router.delete('/:productId', auth.required, ProductsController.deleteProduct);
 
-router.post('/:id_produto/imagem', 
-    auth.obrigatorio, 
-    upload.single('produto_imagem'),
-    Controller.postImagem
+//* Images *//
+router.post('/:productId/image', 
+    auth.required, 
+    upload.single('image'),
+    ProductsController.postImage
 );
 
-router.get('/:id_produto/imagens', Controller.getImagens);
+router.get('/:productId/images', ProductsController.getImages);
  
 module.exports = router;

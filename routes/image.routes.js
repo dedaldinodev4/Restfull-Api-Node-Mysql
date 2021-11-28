@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 
-const Controller = require('../controllers/imagens.controller');
+const imageController = require('../controllers/image.controller');
 
-router.delete('/:id_imagem', auth.obrigatorio, Controller.deleteImagem);
+router.delete('/:imageId', auth.required, imageController.deleteImage);
 
 module.exports = router;

@@ -1,12 +1,12 @@
 {
     "env": {
-        "MYSQL_USER" : "root",
-        "MYSQL_PASSWORD": "",
-        "MYSQL_DATABASE": "rest-mysql",
+        "MYSQL_USER" : "dev-server",
+        "MYSQL_PASSWORD": "9991_Dev4",
+        "MYSQL_DATABASE": "ecommerceAPI",
         "MYSQL_HOST": "localhost",
         "MYSQL_PORT": 3306,
 
         "JWT_KEY": "segredo",
-        "URL_API": "http://localhost:3000/"
+        "URL_API": "http://localhost:3333/"
     }
 }

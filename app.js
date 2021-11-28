@@ -6,10 +6,11 @@ const bodyParser = require('body-parser');
 
 
 //* Rotas *//
-const rotaProdutos  =   require('./routes/produtos.routes');
-const rotaPedidos   =   require('./routes/pedidos.routes');
-const rotaUsuarios  =   require('./routes/usuarios.routes');
-const rotaImagens   =   require('./routes/imagens.routes');    
+const productRoute  =   require('./routes/product.routes');
+const orderRoute    =   require('./routes/orders.routes');
+const userRoute     =   require('./routes/user.routes');
+const imageRoute    =   require('./routes/image.routes');    
+const categoryRoute =   require('./routes/category.routes');
 
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));//Diretorio Totalmente público
@@ -34,10 +35,11 @@ app.use((req, res, next) => {
 })
 
 //* Usando Rotas *//
-app.use('/produtos', rotaProdutos);
-app.use('/pedidos', rotaPedidos);
-app.use('/usuarios', rotaUsuarios);
-app.use('/imagens', rotaImagens);
+app.use('/products', productRoute);
+app.use('/orders', orderRoute);
+app.use('/users', userRoute);
+app.use('/images', imageRoute);
+app.use('/categories', categoryRoute);
 
 app.use((req, res, next) => {
     const erro = new Error('Não Encontrado');
